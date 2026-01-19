@@ -68,12 +68,14 @@ This project uses pnpm for package management. See [Claude.md](./Claude.md) for 
 # Install dependencies
 pnpm install
 
-# Build the project
-pnpm run build
+# Run CLI in development (no build required!)
+pnpm start -- --help
 
-# Run in development mode (watch)
-pnpm run dev
+# Build for production
+pnpm run build
 ```
+
+**Development mode uses [tsx](https://github.com/privatenumber/tsx)** - run TypeScript directly without building. This provides instant feedback and faster iteration.
 
 ### Quality Gateway
 

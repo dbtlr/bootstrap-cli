@@ -16,10 +16,17 @@ This project uses a carefully selected stack of modern, high-performance tools:
 
 ### Build & Development
 
+- **tsx**: TypeScript execute - run TypeScript directly without building
+  - Used for development mode (`pnpm start`)
+  - Instant execution - no build step required
+  - Full ESM and TypeScript support
+  - Significantly faster development iteration
+
 - **tsdown**: Ultra-fast TypeScript bundler and builder
-  - Used instead of tsc for faster builds
+  - Used for production builds
   - Supports declaration files (.d.ts) generation
   - Handles both CommonJS and ESM outputs
+  - Optimized output for distribution
 
 ### Code Quality
 
@@ -200,8 +207,10 @@ bootstrap-cli/
 
 ```json
 {
-  "build": "Build the project with tsdown",
-  "dev": "Build in watch mode",
+  "start": "Run CLI in development mode (tsx - no build required)",
+  "cli": "Alias for start",
+  "build": "Build the project with tsdown for production",
+  "dev": "Build in watch mode (continuous building)",
   "typecheck": "Type check without emitting files",
   "format": "Format code with oxfmt",
   "format:check": "Check if code is formatted",
@@ -216,22 +225,61 @@ bootstrap-cli/
 
 ## Development Workflow
 
-1. **Start development**:
+### No-Build Development (Recommended)
+
+This project uses **tsx** for instant TypeScript execution during development - no build step required!
+
+1. **Install dependencies**:
    ```bash
    pnpm install
-   pnpm run dev  # Watch mode
    ```
 
-2. **Make changes**: Edit files in `src/`
-
-3. **Write tests**: Add tests in `test/`
-
-4. **Check quality**:
+2. **Run CLI in development mode**:
    ```bash
-   pnpm run quality
+   pnpm start -- --help              # Run CLI with tsx (no build!)
+   pnpm start -- my-project          # Test creating a project
+   pnpm start -- --interactive       # Test interactive mode
    ```
 
-5. **Commit**: Quality gateway must pass
+3. **Make changes**: Edit files in `src/` - changes are reflected immediately on next run
+
+4. **Write tests**: Add tests in `test/`
+
+5. **Run quality checks**:
+   ```bash
+   pnpm run typecheck    # Check types
+   pnpm run format       # Format code
+   pnpm run lint         # Lint code
+   pnpm run test         # Run tests
+   pnpm run quality      # Run all checks
+   ```
+
+### Production Build
+
+When ready to publish or test the production bundle:
+
+1. **Build the project**:
+   ```bash
+   pnpm run build        # Creates dist/ with optimized code
+   ```
+
+2. **Test production CLI**:
+   ```bash
+   node bin/cli.mjs --help  # Uses built code from dist/
+   ```
+
+3. **Publish**:
+   ```bash
+   pnpm publish          # Runs quality checks + build automatically
+   ```
+
+## Development vs Production
+
+| Mode | Command | Uses | Best For |
+|------|---------|------|----------|
+| **Development** | `pnpm start` | tsx + TypeScript source | Fast iteration, debugging |
+| **Production** | `node bin/cli.mjs` | Compiled dist/ bundle | Published package, final testing |
+| **Watch** | `pnpm dev` | tsdown watch mode | Testing bundled output |
 
 ## Configuration Notes
 
@@ -264,6 +312,17 @@ bootstrap-cli/
 - HTML, JSON, and text coverage reports
 
 ## Notable Package Choices
+
+### Why tsx for Development?
+- **No build step required**: Run TypeScript directly
+- **Instant execution**: Changes are available immediately on next run
+- **Full TypeScript support**: All features work, including ESM
+- **Faster iteration**: No waiting for builds during development
+- **Production still optimized**: tsdown handles production builds
+
+This two-tier approach (tsx for dev, tsdown for prod) provides the best of both worlds:
+- Fast development with instant feedback
+- Optimized, bundled output for distribution
 
 ### Why Not ESLint?
 - oxlint is 50-100x faster

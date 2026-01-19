@@ -11,6 +11,8 @@
   "scripts": {
     "build": "tsdown src/index.ts --dts --clean",
     "dev": "tsdown src/index.ts --watch",
+    "start": "tsx src/cli/main.ts",
+    "cli": "tsx src/cli/main.ts",
     "typecheck": "tsc --noEmit",
     "format": "oxfmt src test",
     "format:check": "oxfmt --check src test",
@@ -55,6 +57,7 @@
     "oxfmt": "^0.26.0",
     "oxlint": "^1.39.0",
     "tsdown": "0.20.0-beta.3",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.17"
   }
