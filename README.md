@@ -133,7 +133,7 @@ export default {
   packageManager: 'pnpm',
   typescript: true,
   linter: 'oxlint',
-  formatter: 'prettier',
+  formatter: 'oxfmt',
   testing: 'vitest',
   git: true,
 };

@@ -3,9 +3,7 @@
 import { consola } from 'consola';
 import boxen from 'boxen';
 import chalk from 'chalk';
-import { bootstrap } from '../dist/index.js';
-import { parseArgs, printHelp } from '../dist/cli/args.js';
-import { runInteractive } from '../dist/cli/interactive.js';
+import { bootstrap, parseArgs, printHelp, runInteractive } from '../dist/index.mjs';
 
 const pkg = {
   name: 'dbtlr-bootstrap',

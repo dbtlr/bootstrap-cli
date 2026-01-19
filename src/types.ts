@@ -6,7 +6,7 @@ export const BootstrapConfigSchema = z.object({
   packageManager: z.enum(['pnpm', 'npm', 'yarn', 'bun']).default('pnpm'),
   typescript: z.boolean().default(true),
   linter: z.enum(['oxlint', 'eslint', 'none']).default('oxlint'),
-  formatter: z.enum(['prettier', 'none']).default('prettier'),
+  formatter: z.enum(['oxfmt', 'prettier', 'none']).default('oxfmt'),
   testing: z.enum(['vitest', 'jest', 'none']).default('vitest'),
   git: z.boolean().default(true),
 });

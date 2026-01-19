@@ -1,5 +1,7 @@
-import { prompt } from 'enquirer';
+import Enquirer from 'enquirer';
 import { BootstrapConfig } from '../types';
+
+const { prompt } = Enquirer;
 
 export async function runInteractive(
   initialConfig: Partial<BootstrapConfig> = {}
@@ -52,8 +54,8 @@ export async function runInteractive(
       type: 'select',
       name: 'formatter',
       message: 'Formatter:',
-      initial: initialConfig.formatter || 'prettier',
-      choices: ['prettier', 'none'],
+      initial: initialConfig.formatter || 'oxfmt',
+      choices: ['oxfmt', 'prettier', 'none'],
     } as never,
     {
       type: 'select',
