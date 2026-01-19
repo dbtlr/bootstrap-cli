@@ -85,7 +85,7 @@ pnpm run quality
 
 # Individual steps (run in this order)
 pnpm run typecheck      # TypeScript type checking
-pnpm run format:check   # Prettier formatting check
+pnpm run format:check   # oxfmt formatting check
 pnpm run lint           # oxlint (type-aware)
 pnpm run test           # vitest tests
 ```
@@ -114,7 +114,7 @@ pnpm run test:coverage
 - **pnpm**: Fast, efficient package manager
 - **tsdown**: Ultra-fast TypeScript bundler
 - **oxlint**: Blazing fast linter (50-100x faster than ESLint)
-- **Prettier**: Code formatter (configured with single quotes)
+- **oxfmt**: Blazing fast formatter (configured with single quotes)
 - **vitest**: Fast, modern test framework
 - **consola**: Beautiful console logging
 - **enquirer**: Interactive CLI prompts

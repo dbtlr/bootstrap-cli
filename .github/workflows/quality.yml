@@ -45,7 +45,7 @@ jobs:
       - name: Run typecheck
         run: pnpm run typecheck
 
-      - name: Check formatting
+      - name: Check formatting (oxfmt)
         run: pnpm run format:check
 
       - name: Run linter (oxlint)

@@ -29,11 +29,12 @@ This project uses a carefully selected stack of modern, high-performance tools:
   - Smart defaults for TypeScript and JavaScript
   - Configuration: `oxlintrc.json`
 
-- **Prettier**: Code formatter
+- **oxfmt**: Blazing fast formatter from the oxc project
+  - Part of the high-performance oxc toolchain
   - Configured with single quotes as requested
+  - Extremely fast formatting (50-100x faster than Prettier)
   - Consistent code style across the project
-  - Note: oxfmt was requested but is not available as an npm package yet
-  - Configuration: `.prettierrc.json`
+  - Configuration: `.oxfmtrc.json`
 
 ### Testing
 
@@ -126,9 +127,10 @@ The project enforces a strict quality gateway that must pass before code can be 
 - Catches type errors early
 
 ### 2. Formatting Check (`pnpm run format:check`)
-- Validates code formatting with Prettier
+- Validates code formatting with oxfmt
 - Ensures consistent code style
 - Single quotes, semicolons, trailing commas
+- Extremely fast execution
 
 ### 3. Linting (`pnpm run lint`)
 - Runs oxlint with type-aware rules
@@ -190,7 +192,7 @@ bootstrap-cli/
 ├── tsconfig.json          # TypeScript configuration
 ├── vitest.config.ts       # Vitest configuration
 ├── oxlintrc.json          # oxlint configuration
-├── .prettierrc.json       # Prettier configuration
+├── .oxfmtrc.json          # oxfmt configuration
 └── package.json           # Package manifest
 ```
 
@@ -201,7 +203,7 @@ bootstrap-cli/
   "build": "Build the project with tsdown",
   "dev": "Build in watch mode",
   "typecheck": "Type check without emitting files",
-  "format": "Format code with Prettier",
+  "format": "Format code with oxfmt",
   "format:check": "Check if code is formatted",
   "lint": "Lint code with oxlint",
   "test": "Run tests once",
@@ -247,12 +249,13 @@ bootstrap-cli/
 - Unicorn rules for modern JS practices
 - Node.js environment configured
 
-### Prettier (.prettierrc.json)
+### oxfmt (.oxfmtrc.json)
 - Single quotes (as requested)
 - Semicolons enabled
 - Trailing commas (ES5)
 - 100 character line width
 - 2-space indentation
+- Extremely fast formatting (part of oxc toolchain)
 
 ### vitest (vitest.config.ts)
 - Node environment
@@ -282,17 +285,12 @@ bootstrap-cli/
 
 ## Known Limitations
 
-1. **oxfmt**: Not available as npm package
-   - Using Prettier as alternative
-   - Monitor oxc project for oxfmt release
-
-2. **oxlint-tsgolint**: Package mentioned in requirements not found
+1. **oxlint-tsgolint**: Package mentioned in requirements not found
    - Using oxlint with type-aware configuration instead
    - Please clarify if this was a typo or specific requirement
 
 ## Future Considerations
 
-- Add oxfmt when available in npm registry
 - Consider adding oxc-transform for code transformations
 - Evaluate oxc parser for custom tooling
-- Monitor oxc ecosystem for new tools
+- Monitor oxc ecosystem for new tools and updates
